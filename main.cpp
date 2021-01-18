@@ -1,5 +1,6 @@
 #include <iostream>
-#include <string>
+#include <cstring>
+
 using namespace std;
 
 class date{
@@ -52,8 +53,8 @@ public:
         country = "Germany";
         date_post = date();
         char new_str[] = "10.12.2015";
-        data=new char(strlen(new_string)-1);
-        strcpy(data,new_string);
+        data=new char(strlen(new_str)-1);
+        strcpy(data,new_str);
     }
     icecream(string name){
         this->name = name;
@@ -73,6 +74,21 @@ public:
         this->country = country;
         date_post = date(day,month,year);
     }
+    icecream(const icecream &ice){  //конструктор копии
+        name = ice.name;
+        massa = ice.massa;
+        milk = ice.milk;
+        expiration_date = ice.expiration_date;
+        chocolate = ice.chocolate;
+        country = ice.country;
+        if(ice.data){
+            char new_string[]="10.12.2015";
+            data=new char(strlen(new_string)-1);
+            strcpy(data,new_string);
+        }
+        else data=0
+    }
+
     string Read_String();
     int Read_Int();
     void Display();
