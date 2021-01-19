@@ -5,9 +5,9 @@ using namespace std;
 
 class date{
 private:
+    int day;
     int year;
     int month;
-    int day;
 public:
     date(){ //без параметров
         day = 31;
@@ -26,11 +26,11 @@ public:
     }
     void output_date_postavk();
     int Read_Int();
-    void Init(int day,int month,int year);
+    //void Init(int day,int month,int year);
     void Display();
     int Add(date a,date b);
     int get_year();
-    date& operator=(const date&icecream_date);
+    date& operator=(const date &icecream_date);
 };
 class icecream {
 private:
@@ -52,9 +52,9 @@ public:
         chocolate = 0;
         country = "Germany";
         date_post = date();
-        char new_str[] = "10.12.2015";
-        data=new char(strlen(new_str)-1);
-        strcpy(data,new_str);
+        char new_string[] = "Welcome";
+        data=new char(strlen(new_string)-1);
+        strcpy(data,new_string);
     }
     icecream(string name){
         this->name = name;
@@ -64,6 +64,7 @@ public:
         chocolate = 0;
         country = "Germany";
         date_post = date();
+
     }
     icecream(string name, int massa, int milk, int expiration_date, int chocolate, string country, int day, int month, int year){
         this->name = name;
@@ -82,17 +83,41 @@ public:
         chocolate = ice.chocolate;
         country = ice.country;
         if(ice.data){
-            char new_string[]="10.12.2015";
+            char new_string[]="Welcome";
             data=new char(strlen(new_string)-1);
             strcpy(data,new_string);
         }
-        else data=0
+        else data=0;
+    }
+
+    icecream& operator= (const icecream &ice){
+        name = ice.name;
+        massa = ice.massa;
+        milk = ice.milk;
+        expiration_date = ice.expiration_date;
+        chocolate = ice.chocolate;
+        country = ice.country;
+        date_post = ice.date_post;
+        if(this==&ice)
+            return *this;
+        delete[] data;
+        if(ice.data){
+            char new_string[] = "Welcome";
+            data = new char(strlen(new_string)-1);
+            strcpy(data,new_string);
+        }
+        else data = 0;
+        return *this;
+    }
+
+    ~icecream(){
+        delete[] data;
     }
 
     string Read_String();
     int Read_Int();
     void Display();
-    void Init(string name, int massa, int milk, int expiration_date, int chocolate, string country, int day, int month, int year);
+    //void Init(string name, int massa, int milk, int expiration_date, int chocolate, string country, int day, int month, int year);
     int Add(icecream a, icecream b);
     void Country();
     void Sod_Chocolate();
@@ -107,6 +132,8 @@ public:
     int two();
     int get_id();
     static int get_id_now();
+    char* get_data();
+
 };
 int icecream::id_gener = 1;
 
@@ -179,12 +206,12 @@ int date::Read_Int() {
     cin >> c;
     return c;
 }
-void date::Init(int x, int y, int k) {
+/*void date::Init(int x, int y, int k) {
     day = x;
     month = y;
     year = k;
-}
-void icecream::Init(string nazv, int mas, int sod_milk, int ex_date, int ch, string c, int x, int y, int k) {
+}*/
+/*void icecream::Init(string nazv, int mas, int sod_milk, int ex_date, int ch, string c, int x, int y, int k) {
     name = nazv;
     massa = mas;
     milk = sod_milk;
@@ -192,7 +219,7 @@ void icecream::Init(string nazv, int mas, int sod_milk, int ex_date, int ch, str
     chocolate = ch;
     country = c;
     date_post.Init(x, y, k);
-}
+}*/
 void icecream::Country() {
     cout << country;
 }
@@ -218,15 +245,23 @@ void icecream::get_milk(int *milk_ice){
 void Display_name(icecream &icecream_a){
     cout<<icecream_a.name;
 }
-int icecream::one(icecream *p){
-    return p->massa+100;
+
+int date::get_year(){
+    return year;
 }
-int icecream::two(){
-    return one(this);
+char* icecream::get_data(){
+    return data;
 }
+date& date::operator=(const date& icecream_date){
+    day = icecream_date.day;
+    month = icecream_date.month;
+    year = icecream_date.year;
+    return *this;
+}
+
 int main()
 {
-    icecream ice1,ice2;
+    //icecream ice1,ice2;
     string str_1 = "Slastena";
     string str_2 = "Russia";
     int m = 250;
@@ -236,7 +271,17 @@ int main()
     int x = 12;
     int y = 10;
     int k = 2020;
-    ice1.Init(str_1, m, mil, ex, ch, str_2, x, y, k);
+    //ice1.Init(str_1, m, mil, ex, ch, str_2, x, y, k);
+
+    //вызов всех конструкторов
+    cout<<"Calling all constructors:"<<endl<<endl;
+
+    icecream ice1;
+    ice1.Display();
+    icecream ice2("Milka");
+    ice2.Display();
+    icecream ice3(str_1, m, mil, ex, ch, str_2, x, y, k);
+    ice3.Display();
 
     str_1 = "Fixiki";
     str_2 = "Usa";
@@ -247,42 +292,50 @@ int main()
     x = 31;
     y = 12;
     k = 2020;
-    ice2.Init(str_1, m, mil, ex, ch, str_2, x, y, k);
+
+
+    //вызов всех конструкторов со статическими объектами
+    cout<<"Calling all constructors with static objects"<<endl;
+    static icecream static_ice1;
+    static_ice1.Display();
+    static icecream static_ice2("Limon Ice");
+    static_ice2.Display();
+    static icecream static_ice3(str_1, m, mil, ex, ch, str_2, x, y, k);
+    static_ice3.Display();
+
+    //вызов конструкторов с динамическими объектами
+    cout<<"Calling all constructors with dynamic objects"<<endl;
+    icecream *dynamic_ice1 = new icecream();
+    dynamic_ice1->Display();
+    icecream *dynamic_ice2 = new icecream("Milka");
+    dynamic_ice2->Display();
+    icecream *dynamic_ice3 = new icecream(str_1, m, mil, ex, ch, str_2, x, y, k);
+    dynamic_ice3->Display();
+
+    //инициализация массива конструктором с 1 параметром
+    cout<<"Initializing an array with 1 parameter constructor"<<endl;
+    icecream massiv[3];
+    massiv[0] = icecream("ice first");
+    massiv[1] = icecream("ice second");
+    massiv[2] = icecream("ice third");
+    massiv[0].Display();
+    massiv[1].Display();
+    massiv[2].Display();
+
+    //демонстрация использования конструктора копирования
+    cout<<"Demonstration of using the copy constructor"<<endl;
+    icecream copy_icecream(ice1);
+    copy_icecream.Display();
+
+    //демонстрация опреатора присваивания
+    cout<<"Demonstration of using an overloaded assignment operator"<<endl;
+    ice1 = ice3;
     ice1.Display();
-    ice2.Display();
 
-    //возврат значения из метода через ссылку
-    int& mas_i=ice1.get_massa();//создаем ссылку которой присваиваем значение переменной массы
-    cout<<mas_i<<endl;
-
-    //возврат значния из метода через указатель
-    int milk_ice;
-    ice1.get_milk(&milk_ice);
-    cout<<milk_ice<<endl;
-    //указатель на объект
-    Display_name(ice1);
-
-    //демонстрация перегрузки оператора +
-    icecream ice3;
-    ice3=ice1+ice2;
-    cout<<endl<<ice3.get_massa()<<endl;
-
-    //демонтрация перегрузки оператора ++ (префикс)
-    cout<<ice1.get_massa()<<endl;
-    ++ice1;
-    cout<<ice1.get_massa()<<endl;
-
-    //постфикс
-    ice1++;
-    cout<<ice1.get_massa()<<endl;
-
-    //демонстрация использования оператора this
-    cout<<ice1.two()<<endl;
-
-    //демонстрация использования статических полей для получения идентификатора каждого объекта
-    cout<<"ID first object: "<<ice1.get_id()<<endl;
-    cout<<"ID second object: "<<ice2.get_id()<<endl;
-
-    //демонстрация использования статического метода для получения текущего (свободного) идентификатора
-    cout<<"Now ID (free ID): "<<icecream::get_id_now()<<endl;
+    icecream ice;
+    cout<<ice.get_data()<<endl;
+    {
+        icecream ice_one = ice;
+    }
+    cout<<ice.get_data()<<endl;
 }
