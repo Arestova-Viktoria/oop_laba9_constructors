@@ -64,7 +64,6 @@ public:
         chocolate = 0;
         country = "Germany";
         date_post = date();
-
     }
     icecream(string name, int massa, int milk, int expiration_date, int chocolate, string country, int day, int month, int year){
         this->name = name;
@@ -122,14 +121,14 @@ public:
     void Country();
     void Sod_Chocolate();
     void output_date_postavk();
-    int& get_massa();                   //добавлено
-    void get_milk(int *icecream_milk);  //добавлено
-    friend void Display_name(icecream& icecream_a);  //добавлено
+    int& get_massa();
+    void get_milk(int *icecream_milk);
+    friend void Display_name(icecream& icecream_a);
     friend icecream operator+(const icecream &p_1,const icecream &p_2);  //добавлено
     icecream& operator++();  //добавлено
     icecream operator++(int);  //добавлено
     int one(icecream *p);
-    int two();
+    //int two();
     int get_id();
     static int get_id_now();
     char* get_data();
@@ -197,9 +196,9 @@ int icecream::Add(icecream ice1, icecream ice2) {
 }
 
 int icecream::Read_Int() {
-    int number;
-    cin >> number;
-    return number;
+    int c;
+    cin >> c;
+    return c;
 }
 int date::Read_Int() {
     int c;
@@ -252,7 +251,7 @@ int date::get_year(){
 char* icecream::get_data(){
     return data;
 }
-date& date::operator=(const date& icecream_date){
+date& date::operator=(const date &icecream_date){
     day = icecream_date.day;
     month = icecream_date.month;
     year = icecream_date.year;
@@ -315,9 +314,13 @@ int main()
     //инициализация массива конструктором с 1 параметром
     cout<<"Initializing an array with 1 parameter constructor"<<endl;
     icecream massiv[3];
-    massiv[0] = icecream("ice first");
-    massiv[1] = icecream("ice second");
-    massiv[2] = icecream("ice third");
+    string m1 = "Ice 1";
+    string m2 = "Ice 2";
+    string m3 = "Ice 3";
+   // massiv[0] = new icecream(m1);
+    massiv[0] = icecream(m1);
+    massiv[1] = icecream(m2);
+    massiv[2] = icecream(m3);
     massiv[0].Display();
     massiv[1].Display();
     massiv[2].Display();
