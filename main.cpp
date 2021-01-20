@@ -82,12 +82,12 @@ public:
         expiration_date = ice.expiration_date;
         chocolate = ice.chocolate;
         country = ice.country;
-        if(ice.data){
+        /*if(ice.data){
             char new_string[]="Welcome";
             data=new char(strlen(new_string)-1);
             strcpy(data,new_string);
         }
-        else data=0;
+        else data=0;*/
     }
 
     icecream& operator= (const icecream &ice){
@@ -98,7 +98,7 @@ public:
         chocolate = ice.chocolate;
         country = ice.country;
         date_post = ice.date_post;
-        if(this==&ice)
+        /*if(this==&ice)
             return *this;
         delete[] data;
         if(ice.data){
@@ -106,7 +106,7 @@ public:
             data = new char(strlen(new_string)-1);
             strcpy(data,new_string);
         }
-        else data = 0;
+        else data = 0;*/
         return *this;
     }
 
@@ -315,9 +315,18 @@ int main()
     //инициализация массива конструктором с 1 параметром
     cout<<"Initializing an array with 1 parameter constructor"<<endl;
     icecream massiv[3];
+<<<<<<< Updated upstream
     massiv[0] = icecream("ice first");
     massiv[1] = icecream("ice second");
     massiv[2] = icecream("ice third");
+=======
+    string m1 = "Ice 1";
+    string m2 = "Ice 2";
+    string m3 = "Ice 3";
+    massiv[0] = icecream(m1);
+    massiv[1] = icecream(m2);
+    massiv[2] = icecream(m3);
+>>>>>>> Stashed changes
     massiv[0].Display();
     massiv[1].Display();
     massiv[2].Display();
