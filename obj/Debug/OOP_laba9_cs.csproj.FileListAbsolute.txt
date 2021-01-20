@@ -1,0 +1,7 @@
+C:\Program Files (x86)\progme\OOP_laba9_cs\OOP_laba9_cs\OOP_laba9_cs\bin\Debug\OOP_laba9_cs.exe.config
+C:\Program Files (x86)\progme\OOP_laba9_cs\OOP_laba9_cs\OOP_laba9_cs\bin\Debug\OOP_laba9_cs.exe
+C:\Program Files (x86)\progme\OOP_laba9_cs\OOP_laba9_cs\OOP_laba9_cs\bin\Debug\OOP_laba9_cs.pdb
+C:\Program Files (x86)\progme\OOP_laba9_cs\OOP_laba9_cs\OOP_laba9_cs\obj\Debug\OOP_laba9_cs.csprojAssemblyReference.cache
+C:\Program Files (x86)\progme\OOP_laba9_cs\OOP_laba9_cs\OOP_laba9_cs\obj\Debug\OOP_laba9_cs.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\progme\OOP_laba9_cs\OOP_laba9_cs\OOP_laba9_cs\obj\Debug\OOP_laba9_cs.exe
+C:\Program Files (x86)\progme\OOP_laba9_cs\OOP_laba9_cs\OOP_laba9_cs\obj\Debug\OOP_laba9_cs.pdb
